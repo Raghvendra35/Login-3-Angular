@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,8 @@ export class LoginComponent implements OnInit
       password:""
   }
 
+  constructor(private loginService:LoginService){}
+
   ngOnInit()
   {
 
@@ -26,6 +29,10 @@ export class LoginComponent implements OnInit
     {
       alert("Login.....");
       //Generate Token
+      this.loginService.generateToken(this.credentials).subscribe(respone=>
+        {
+          
+        })
     }else{
       alert(" Fields are Empty!!!")
     }

@@ -29,9 +29,25 @@ export class LoginComponent implements OnInit
     {
       alert("Login.....");
       //Generate Token
-      this.loginService.generateToken(this.credentials).subscribe(respone=>
+      this.loginService.generateToken(this.credentials).subscribe((response: any)=>
         {
-          
+          //Success generate Token
+        console.log(response);
+        //here we are getting token
+        console.log(response.token);
+        //Now token has come in localStorage
+
+        //Here we are send token 
+        this.loginService.logginUser(response.token);
+         
+        //here we are redirect to dashboard
+        window.location.href="/dashboard"
+  
+             
+        },error=>
+        {
+       console.log(error);
+
         })
     }else{
       alert(" Fields are Empty!!!")
@@ -40,3 +56,9 @@ export class LoginComponent implements OnInit
   }
 
 }
+
+
+
+
+
+
